@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Key Code Display</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        #key-display {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+            min-height: 80px;
+        }
+        .info {
+            color: #666;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Press Any Key</h1>
+        <div id="key-display"></div>
+        <p class="info">Key code will appear above</p>
+    </div>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            const keyDisplay = document.getElementById('key-display');
+            keyDisplay.textContent = event.key;
+            
+            // Create temporary element to show code
+            const codeElement = document.createElement('div');
+            codeElement.textContent = `Code: ${event.code}`;
+            codeElement.style.fontSize = '1.5rem';
+            codeElement.style.color = '#666';
+            keyDisplay.appendChild(codeElement);
+        });
+
+        document.addEventListener('keyup', function() {
+            const keyDisplay = document.getElementById('key-display');
+            // Clear the code display when key is released
+            if (keyDisplay.children.length > 0) {
+                keyDisplay.removeChild(keyDisplay.lastChild);
+            }
+        });
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
