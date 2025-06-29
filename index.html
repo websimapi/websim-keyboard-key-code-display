@@ -28,34 +28,32 @@
             color: #666;
             font-size: 1.2rem;
         }
+        .code-display {
+            font-size: 1.5rem;
+            color: #666;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Press Any Key</h1>
-        <div id="key-display"></div>
-        <p class="info">Key code will appear above</p>
+        <div id="key-display">Press any key</div>
+        <div id="code-display" class="code-display"></div>
     </div>
 
     <script>
         document.addEventListener('keydown', function(event) {
             const keyDisplay = document.getElementById('key-display');
-            keyDisplay.textContent = event.key;
+            const codeDisplay = document.getElementById('code-display');
             
-            // Create temporary element to show code
-            const codeElement = document.createElement('div');
-            codeElement.textContent = `Code: ${event.code}`;
-            codeElement.style.fontSize = '1.5rem';
-            codeElement.style.color = '#666';
-            keyDisplay.appendChild(codeElement);
-        });
-
-        document.addEventListener('keyup', function() {
-            const keyDisplay = document.getElementById('key-display');
-            // Clear the code display when key is released
-            if (keyDisplay.children.length > 0) {
-                keyDisplay.removeChild(keyDisplay.lastChild);
-            }
+            // Handle keys without a character representation
+            const keyValue = event.key === ' ' ? 'Space' : 
+                             event.key === '' ? 'Special Key' : 
+                             event.key;
+            
+            keyDisplay.textContent = keyValue;
+            codeDisplay.textContent = `Code: ${event.code}`;
         });
     </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
